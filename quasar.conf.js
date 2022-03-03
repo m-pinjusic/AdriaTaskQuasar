@@ -45,7 +45,7 @@ module.exports = configure(function (ctx) {
       // available values: 'hash', 'history'
       vueRouterMode: "hash",
       env: {
-        apiCalendar: "0702b226e57109c7e16e0b39437d9717a106a9ef",
+        apiCalendar: "putHereAPI",
       },
 
       // transpile: false,
