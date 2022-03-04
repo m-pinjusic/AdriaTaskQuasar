@@ -17,8 +17,11 @@
 
 <script>
 import QRgenerator from "components/QRgenerator.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
+  name: "ControllerShortlist",
+
   components: {
     QRgenerator,
   },
@@ -47,7 +50,7 @@ export default {
   data() {
     return {};
   },
-};
+});
 </script>
 
 <style lang="sass" scoped>

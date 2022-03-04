@@ -2,7 +2,7 @@
   <q-page class="flex">
     <div class="q-ma-md row content-start justify-start items-center">
       <ControllerShortList
-        v-for="data in basicControllersData"
+        v-for="data in this.basicControllersData"
         :key="data.id"
         v-bind="data"
       >
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, onBeforeMount } from "vue";
 import ControllerShortList from "components/ControllerShortList.vue";
 
 export default defineComponent({
@@ -25,10 +25,16 @@ export default defineComponent({
       basicControllersData: [],
     };
   },
+  methods: {
+    async getSessionData() {
+      this.basicControllersData = this.$q.sessionStorage.getItem(
+        "sessionControllerData"
+      );
+      console.log(this.basicControllersData);
+    },
+  },
   async mounted() {
-    this.basicControllersData = this.$q.sessionStorage.getItem(
-      "sessionControllerData"
-    );
+    await this.getSessionData();
   },
 });
 </script>

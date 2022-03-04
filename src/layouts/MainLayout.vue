@@ -105,7 +105,7 @@ export default defineComponent({
   },
   methods: {
     async getHolidayApi() {
-      while (this.counter != 2) {
+      while (this.foundMonth == false) {
         this.counter = this.counter + 1;
         apiCalendarRequest =
           "https://calendarific.com/api/v2/holidays?&api_key=" +
@@ -162,7 +162,7 @@ export default defineComponent({
       });
     },
     async getRoomStatusJSON() {
-      axios("./room_status.json").then((response) => {
+      await axios("./room_status.json").then((response) => {
         this.controllersData = response.data.controllers;
         //console.log(this.controllersData[3]);
         this.$q.sessionStorage.set(
@@ -175,8 +175,10 @@ export default defineComponent({
 
   mounted() {
     this.getOpenAQdata();
-    this.getRoomStatusJSON();
     this.getHolidayApi();
+  },
+  created() {
+    this.getRoomStatusJSON();
   },
 });
 </script>
