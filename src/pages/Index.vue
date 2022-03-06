@@ -2,7 +2,7 @@
   <q-page class="flex">
     <div class="q-ma-md row content-start justify-start items-center">
       <ControllerShortList
-        v-for="data in this.basicControllersData"
+        v-for="data in this.$q.sessionStorage.getItem('sessionControllerData')"
         :key="data.id"
         v-bind="data"
       >
@@ -24,17 +24,6 @@ export default defineComponent({
     return {
       basicControllersData: [],
     };
-  },
-  methods: {
-    async getSessionData() {
-      this.basicControllersData = this.$q.sessionStorage.getItem(
-        "sessionControllerData"
-      );
-      console.log(this.basicControllersData);
-    },
-  },
-  async mounted() {
-    await this.getSessionData();
   },
 });
 </script>
